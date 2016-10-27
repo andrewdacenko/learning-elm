@@ -1,12 +1,17 @@
-module Main exposing (..)
+module Main exposing (main)
 
-import Html.App as Html
+import Navigation
+import RootRoutes
+import RootUpdate
+import RootView
 
-import Model exposing (model)
-import View exposing (view)
---import Update exposing (update)
 
-import Html exposing (text)
-
+main : Program Never
 main =
-    view model
+    Navigation.program (Navigation.makeParser RootRoutes.parsePath)
+        { init = RootUpdate.init
+        , update = RootUpdate.update
+        , urlUpdate = RootUpdate.urlUpdate
+        , view = RootView.view
+        , subscriptions = \_ -> Sub.batch []
+        }

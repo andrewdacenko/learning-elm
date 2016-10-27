@@ -1,15 +1,30 @@
-module Layout.Header exposing (..)
+module Layout.Header exposing (navbar)
 
-import Model exposing (Model)
+import Html exposing (..)
+import Html.Attributes exposing (..)
+import RootRoutes exposing (Sitemap(HomeRoute, LoginRoute))
+import Components exposing (linkTo)
+import RootUpdate exposing (Msg)
 
-import Html exposing (Html, div, h1, text)
-import Html.Attributes exposing (class)
-
-render : Model -> Html msg
-render model =
-    div [class "flex"] [
-        div [class "col col-3"] []
-        , div [class "col col-6"] [
-            h1 [] [text "Header"]
+navbar : Html Msg
+navbar =
+  nav [class "navbar navbar-default navbar-fixed-top"]
+    [ div [class "container"]
+      [ div [class "navbar-header"]
+        [ button [type' "button", class "navbar-toggle collapsed"]
+          [ span [class "sr-only"] [text "Toggle navigation"]
+          , span [class "icon-bar"] []
+          , span [class "icon-bar"] []
+          , span [class "icon-bar"] []
+          ]
+        , a [class "navbar-brand", href "#"] [text "Project name"]
         ]
+      , div [id "navbar", class "navbar-collapse collapse"]
+        [ ul [class "nav navbar-nav"]
+          [ li [class "active"] [a [linkTo HomeRoute] [text "Home"]]
+          , li [] [a [linkTo LoginRoute] [text "Login"]]
+          , li [] [a [href "#"] [text "Contact"]]
+          ]
+        ]
+      ]
     ]

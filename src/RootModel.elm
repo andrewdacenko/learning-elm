@@ -1,8 +1,15 @@
-module Model exposing (Model, User, model)
+module RootModel exposing
+    ( Model
+    , User
+    , model
+    )
+
+import Material
 
 type alias Model =
     { isLoading: Bool
     , users: Maybe (List User)
+    , mdl : Material.Model
     }
 
 type alias User =
@@ -36,4 +43,5 @@ model : Model
 model =
     { isLoading = False
     , users = Nothing
+    , mdl = Material.model
     }

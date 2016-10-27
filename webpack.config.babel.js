@@ -7,6 +7,10 @@ module.exports = {
         ]
     },
 
+    debug: true,
+
+    devtool: 'source-map',
+
     output: {
         path: path.resolve(__dirname + '/dist'),
         filename: '[name].js',
@@ -47,6 +51,7 @@ module.exports = {
     devServer: {
         inline: true,
         stats: { colors: true },
+        historyApiFallback: true
     },
 
 };
